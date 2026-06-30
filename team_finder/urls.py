@@ -10,16 +10,24 @@ urlpatterns = [
     
     # Списки проектов
     path('', project_views.project_list, name='index'),
-    path('projects/list', project_views.project_list, name='project_list'),
+    path('projects/list/', project_views.project_list, name='project_list'),
     
     # Списки участников и профиль
-    path('users/list', user_views.participants_list, name='participants_list'),
+    path('users/list/', user_views.participants_list, name='participants_list'),
     path('users/<int:user_id>/', user_views.user_detail, name='user_detail'),
     
-    # Роуты, которые запрашивает ваш фронтенд из skills.js
+    # AJAX-роуты 
     path('projects/skills/', project_views.skill_autocomplete, name='skill_autocomplete'),
     path('projects/<int:project_id>/skills/add/', project_views.add_skill, name='add_skill'),
     path('projects/<int:project_id>/skills/<int:skill_id>/remove/', project_views.remove_skill, name='remove_skill'),
+
+    
+    path('projects/create-project/', project_views.project_list, name='project_create'),
+    path('users/login/', user_views.participants_list, name='login'),
+    path('users/register/', user_views.participants_list, name='register'),
+    path('users/logout/', user_views.participants_list, name='logout'),
+    path('users/edit-profile/', user_views.participants_list, name='edit_profile'),
+    path('users/change-password/', user_views.participants_list, name='change_password'),
 ]
 
 if settings.DEBUG:
